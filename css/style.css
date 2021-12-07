@@ -1,0 +1,15 @@
+.header-container{
+    text-align: center;
+}
+.navbar{
+    background-color: chartreuse;
+}
+
+div#imgContainer{
+    width:50%;
+
+}
+
+#imgContainer img{
+    max-width:50%;
+}
