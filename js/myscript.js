@@ -1,42 +1,44 @@
 //Phân tích Bài toán lúc này: Nhấn vào BUTTON > thay đổi P 
 // 1. Xác định các đối tượng chịu tác động
-let btnDetermine    = document.getElementById("btnDetermine");
+const determineBtn = document.getElementById("determine");
 // let imgContainer    = document.getElementById("imgContainer");
-let imgItem = document.getElementById("imgItem");
-let imgContainer = document.getElementById("imgContainer");
+const defaultResultBox = document.getElementsByClassName("default-box");
 // 2. Xử lý: Bắt sự kiện (Có nhiều cách)
-btnDetermine.addEventListener("click", hamGiDo);
-
+determineBtn.addEventListener("click", hamGiDo);
 // 3. Hàm xử lý sự kiện:
-function hamGiDo(){
-    let listDetermine = ['normal','Bizarre','alien'];
-    let Determine = txtDetermine.value;
-
-    // Can hoc va ren luyen tu duy Lap trinh truoc do
-    if(Determine == ''){
-        alert('You must answer question');
-    }else{
-        let result = false;
-        for(let i=0; i<listDetermine.length; i++){
-            if(determine == listDetermine[i]){
-                result = true;
-                break;
-            }
-        }
-        if(result == true){
-            lblTitle.textContent = Determine;
-            imgItem.src = 'images/'+Determine+'.jpg';
-        }else{
-            alert("Question is not exited")
-        }
+function hamGiDo() {
+    const defaultAns = document.getElementsByClassName("defaultAns");
+  
+    defaultResultBox[0].innerHTML = "";
+    const heading = document.createElement("h2");
+    heading.classList.add("default-heading");
+  
+    const image = document.createElement("img");
+    image.classList.add("default-img");
+  
+    if (
+      defaultAns[0].selectedIndex == 0 &&
+      defaultAns[1].selectedIndex == 2 &&
+      defaultAns[2].selectedIndex == 1
+    ) {
+      heading.textContent = "You're an alien";
+      image.setAttribute("src", "images/alien.jpg");
+    } else if (
+      defaultAns[0].selectedIndex == 2 &&
+      defaultAns[1].selectedIndex == 0 &&
+      defaultAns[2].selectedIndex == 0
+    ) {
+      heading.textContent = "You're bizarre";
+      image.setAttribute("src", "images/Bizarre.jpg");
+    } else {
+      heading.textContent = "You're normal";
+      image.setAttribute("src", "images/normal.jpg");
     }
-
-
-}
-
-btnDetermine.addEventListener("click", function(){
-    let newElement = document.createElement("img");
-    newElement.src = "images/alien.jpg";
-
-    imgContainer.appendChild(newElement);
-})
+  
+    for (let i = 0; i < defaultAns.length; i++) {
+      defaultAns[i].selectedIndex = 0;
+    }
+  
+    defaultResultBox[0].appendChild(heading);
+    defaultResultBox[0].appendChild(image);
+  };
